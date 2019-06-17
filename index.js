@@ -34,7 +34,7 @@ function insert(c) {
 }
 
 function evaluate() {
-    console.log(eval(input.textContent));
+    input.textContent = eval(input.textContent);
 }
 
 function insertchar(c) {
