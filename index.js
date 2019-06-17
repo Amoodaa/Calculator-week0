@@ -1,6 +1,7 @@
 const input = document.querySelector(".screen")
 const buttonsDiv = document.querySelector(".buttons")
 const regexp = /[1-9.]+[+\-*\/]+[1-9.]+/g;
+const keys = ['+', '-', '*', '.', '/']
 
 function addButtons() {
     let btn;
@@ -9,19 +10,32 @@ function addButtons() {
         btn = document.createElement('button');
         btn.textContent = keys[i];
         btn.classList.add('keys');
-        btn.addEventListener('click', (e) => insert(e.target.textContent));
+        if (keys[i] == '=') {
+            btn.addEventListener('click', () => evaluate());
+        } else
+            btn.addEventListener('click', (e) => insert(e.target.textContent));
         buttonsDiv.appendChild(btn);
     }
+
 }
 addButtons();
 
 function insert(c) {
-
-    insertchar(c);
-
-
+    let x = input.textContent.slice(input.textContent.length - 1);
+    let isFound = false;
+    if (keys.includes(c))
+        for (let index = 0; index < keys.length; index++) {
+            if (keys[index] == x) {
+                isFound = true;
+                input.textContent = input.textContent.slice(0, input.textContent.length - 1) + c;
+            }
+        }
+    isFound ? null : insertchar(c);
 }
 
+function evaluate() {
+    console.log(eval(input.textContent));
+}
 
 function insertchar(c) {
     input.textContent += String(c);
