@@ -1,0 +1,42 @@
+.container {
+    margin: auto;
+    width: 40%;
+    height: 40vh;
+
+}
+
+.input,
+.buttons {
+    width: 100%;
+    border: 2px solid grey;
+    padding: 2px;
+}
+
+.input {
+    height: 30%;
+    text-align: center;
+
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: flex-end;
+    height: auto;
+    /* padding: 2px; */
+}
+
+.keys {
+
+    margin: 2px;
+    padding: 5%;
+    flex-basis: 24%;
+    font-size: 24px;
+}
+
+#clear,
+.screen {
+    float: left;
+    position: relative;
+}
