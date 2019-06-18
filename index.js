@@ -82,6 +82,7 @@ function insertDot() {
 }
 
 function insert(c) {
+    if (input.textContent == 'arthmetic error') clear();
     if (input.textContent == "" && (c == '/' || c == '*')) return;
     if (checkForDuplication(c, input.textContent)) {
 
