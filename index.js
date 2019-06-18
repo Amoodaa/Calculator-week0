@@ -12,7 +12,9 @@ backspaceBtn.addEventListener('click', () => backspace());
 window.addEventListener('keydown', (e) => {
     if (e.key == 'Backspace') backspace();
 });
-
+window.addEventListener('keydown', (e) => {
+    if (e.key == 'Enter') evaluate();
+});
 (function addButtons() {
     let btn;
     let keys = [1, 2, 3, '+', 4, 5, 6, '-', 7, 8, 9, '*', '.', 0, '=', '/']
@@ -33,7 +35,6 @@ window.addEventListener('keydown', (e) => {
             });
         else if (keys[i] == '.')
             window.addEventListener('keydown', (e) => {
-                console.log(e.key);
                 if (e.key == '.') insertDot();
             });
         else
@@ -60,9 +61,21 @@ function checkForDuplication(c, exp) {
     return false;
 }
 
+function endsWithOperator(exp) {
+    return exp.charAt(exp.length - 1).match(/[+\-*\/]+/g) != null;
+}
+
+function endsWithDot(exp) {
+    return exp.charAt(exp.length - 1).match(/[.]/g) != null;
+}
+
 function insertDot() {
     let exp = input.textContent;
-    if (exp == "" || !endsWithOperatorOrDot(exp)) insertchar('.');
+    if (endsWithDot(exp)) return;
+    if (exp == "" || endsWithOperator(exp)) insertchar('0.');
+    else
+    if (!(exp == "" || endsWithOperator(exp))) insertchar('.');
+
     let arr = exp.split(/[+\-*\/]+/g);
     if (arr[arr.length - 1].match(/\d+.+\d+/) != null)
         backspace();
@@ -84,13 +97,10 @@ function clear() {
     input.textContent = "";
 }
 
-function endsWithOperatorOrDot(exp) {
-    return exp.charAt(exp.length - 1).match(/[+\-*\/.]+/g) != null;
-}
 
 function evaluate() {
     let exp = input.textContent;
-    if (endsWithOperatorOrDot(exp))
+    if (endsWithOperator(exp) || endsWithDot(exp))
         backspace();
     if (exp.endsWith('/0')) {
         input.textContent = 'arthmetic error';
