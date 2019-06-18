@@ -82,7 +82,9 @@ function insertDot() {
 }
 
 function insert(c) {
+    if (input.textContent == "" && (c == '/' || c == '*')) return;
     if (checkForDuplication(c, input.textContent)) {
+
         backspace();
         input.textContent += c;
     } else
