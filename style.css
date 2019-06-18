@@ -2,7 +2,7 @@
     margin: auto;
     width: 40%;
     height: 40vh;
-
+    position: relative;
 }
 
 .input,
@@ -10,12 +10,6 @@
     width: 100%;
     border: 2px solid grey;
     padding: 2px;
-}
-
-.input {
-    height: 30%;
-    text-align: center;
-
 }
 
 .buttons {
@@ -27,6 +21,7 @@
     /* padding: 2px; */
 }
 
+
 .keys {
 
     margin: 2px;
@@ -35,8 +30,38 @@
     font-size: 24px;
 }
 
-#clear,
-.screen {
-    float: left;
-    position: relative;
+
+.input {
+    height: 30%;
+    text-align: center;
+    display: flex;
 }
+
+
+
+.editButtons {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 20%;
+}
+
+.screen {
+    flex-basis: 80%;
+}
+
+.editButtons button {
+    font-size: 20px;
+    height: -webkit-fill-available;
+}
+
+/* #clear,
+#backspace {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+}
+
+#backspace{
+    right: 12px;
+    top: 50%;
+} */
